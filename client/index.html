@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Vue Lifecycle</title>
+    <style>
+      .danger {
+        color: crimson;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{title}}</h1>
+      <h3>highPriorityTodos Todo:</h3>
+      <input
+        v-bind:class="{danger: !isError}"
+        type="text"
+        v-model="newTodoInput"
+      />
+      <ul>
+        <li v-for="item in highPriorityTodos" :key="item.id">{{item.title}}</li>
+      </ul>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+      integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          newTodoInput: "",
+          isError: true,
+          title: "Belajar Vue Lifecycle",
+          todos: [
+            { title: "Create Kanban Server", priority: "1", id: 2 },
+            { title: "Create Kanban Client", priority: "1", id: 4 },
+          ],
+        },
+        watch: {
+          newTodoInput: function (newInput, oldInput) {
+            if (newInput.length > 5) {
+              this.isError = false;
+            } else {
+              this.isError = true;
+            }
+            // console.log("dari watch: ", newInput, oldInput);
+          },
+        },
+        computed: {
+          // modifikasi data reaktif
+          // 10000
+          // case mata uang Rp. xxx ,-
+          // type data:  tergantung data yang di return
+          highPriorityTodos() {
+            console.log("masuk computed");
+            return this.todos.filter((e) => e.priority == "1"); // []
+          },
+        },
+        methods: {
+          highPriorityTodosMethods() {
+            console.log("masuk");
+            return this.todos.filter((e) => e.priority == "1");
+          },
+          fetchTodos() {
+            axios({
+              method: "GET",
+              url: "http://localhost:3000/todos",
+            }).then(({ data }) => {
+              this.todos = data; // replace
+            });
+            console.log("created: ", this.title);
+          },
+        },
+        beforeCreate() {
+          console.log("ini dari beforeCreate", this.title);
+          //   debugger;
+        },
+        created() {
+          // data udah dikenali
+          // fetch data ke server
+          // modifikasi data sebelum di render
+          // kondisi login (auth)
+          //   debugger;
+          this.fetchTodos();
+        },
+        beforeMount() {
+          console.log("beforemount: ", this.title);
+          console.log("beforemount: ", this.$el);
+          //   debugger;
+        },
+        mounted() {
+          // manipulasi dom udah bisa
+          console.log("mounted: ", this.title);
+          console.log("mounted: ", this.$el);
+          //   debugger;
+        },
+      });
+    </script>
+  </body>
+</html>

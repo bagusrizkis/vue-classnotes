@@ -1,0 +1,10 @@
+{
+    "todos": [
+          { "title": "Create Kanban Server", "priority": "1", "id": 2 },
+          { "title": "Create Kanban Client", "priority": "1", "id": 4 },
+          { "title": "Create Template Kanban", "priority": "2", "id": 5 },
+          { "title": "Create weekly checklist", "priority": "3", "id": 6 },
+          { "title": "Standup Kanban", "priority": "2", "id": 7 },
+          { "title": "Push code to github", "priority": "1", "id": 8 }
+    ]
+}
