@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <button-component></button-component>
+      <button-component></button-component>
+      <button-component></button-component>
+      <text-global-component></text-global-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      const buttonComponent = {
+        template: `<button @click="count += 1">Click me {{count}}</button>`,
+        data() {
+          return {
+            count: 0,
+          };
+        },
+        // methods: {}
+        // lifecycle ()
+      };
+
+      // global registration
+      // wajib sebelum ada instance
+      Vue.component("text-global-component", {
+        template: "<p>{{title}}</p>",
+        data: function () {
+          return {
+            title: "Hello from global Component",
+          };
+        },
+        // methods: {}
+        // lifecycle ()
+      });
+
+      const app = new Vue({
+        el: "#app",
+        components: {
+          // local registration
+          "button-component": buttonComponent,
+        },
+      });
+    </script>
+  </body>
+</html>
