@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <link rel="stylesheet" href="css/tailwind.css" />
+</head>
+
+<body>
+    <div id="app">
+        <!-- ! BEGIN NAVBAR -->
+        <header class="sticky top-0 z-10 fixed">
+            <nav class="shadow-md w-full px-5 py-2 flex justify-between items-center">
+                <p>H9 Students</p>
+                <button @click="logout" v-if="isLogedin" class="bg-gray-100 hover:bg-red-200 font-bold py-2 px-4 rounded">
+                    Logout
+                </button>
+            </nav>
+        </header>
+        <!-- END NAVBAR -->
+
+        <!-- ! BEGIN LOGIN -->
+        <div v-if="!isLogedin" class="flex justify-center content-center mt-10">
+            <div class=" w-6/12 shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+                <div class="mb-4">
+                    <label class="block text-grey-800 text-sm font-bold mb-2" for="email">
+                        Email
+                    </label>
+                    <input v-model="loginInput.email" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="email"
+                        type="text" placeholder="user@mail.com">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-grey-darker text-sm font-bold mb-2" for="password">
+                        Password
+                    </label>
+                    <input
+                    v-model="loginInput.password"
+                        class="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
+                        id="password" type="password" placeholder="******************">
+                    <p class="text-red text-xs italic">Please choose a password.</p>
+                </div>
+                <div class="flex items-center justify-between">
+                    <button @click="loginUser" class="bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded" type="button">
+                        Sign In
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- END LOGIN -->
+
+        <section v-if="isLogedin">
+            <!-- ! BEGIN DASHBOARD -->
+            <div class="flex justify-center overflow-y-scroll">
+                <div class="w-100 flex py-4 space-x-5">
+                    <!-- BOARDS -->
+                    <div class="bg-gray-100 rounded-lg px-2 py-2  rounded min-w-40 w-40"
+                        v-for="board in boards"
+                        :key="board.id">
+                        <p class="text-gray-700 font-sans text-sm">Phase {{board.name}}</p>
+                        <!-- STUDENTS CARDS -->
+                        <div v-for="student in filterStudents[board.name]">
+                            <div class="bg-white shadow rounded px-2 pt-3 mb-1 border border-white">
+                                <div class="flex justify-between items-center">
+                                    <p class="text-gray-700 font-semibold font-sans text-sm">
+                                        {{student.name}}
+                                    </p>
+                                    <img class="w-4 h-4 rounded-full"
+                                        src="https://pickaface.net/gallery/avatar/unr_sample_161118_2054_ynlrg.png"
+                                        alt="Avatar" />
+                                </div>
+                                <div class="flex mt-4 justify-between items-center"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- BOARDS -->
+                </div>
+            </div>
+            <!-- END DASHBOARD -->
+
+            <!-- ! BEGIN ADD BUTTON -->
+            <div class="absolute bottom-10 right-10">
+                <button @click="showAddModal = true"
+                    class="p-0 w-10 h-10 bg-blue-300 rounded-full hover:bg-blue-700 transition focus:outline-none">
+                    ➕
+                </button>
+            </div>
+            <!-- END ADD BUTTON -->
+
+            <!-- ! BEGIN MODAL -->
+            <div v-if="showAddModal" class="rounded font-sans fixed z-100 inset-20 overflow-y-auto">
+                <div class="w-full absolute flex justify-center">
+                    <div class="bg-gray-200 rounded shadow p-8 m-4 max-w-xs max-h-full text-center">
+                        <div class="mb-4">
+                            <h1>Add Student</h1>
+                        </div>
+                        <div class="mb-8">
+                            <div class="mb-4">
+                                Name: <input class="bg-gray-100 p-1" type="text" />
+                            </div>
+                            <div>Phase: <input class="bg-gray-100 p-1" type="text" /></div>
+                        </div>
+                        <div class="flex justify-center">
+                            <button class="py-2 px-4 rounded bg-green-100 hover:bg-green-300">
+                                Add
+                            </button>
+                            <button class="py-2 px-4 rounded bg-red-100 hover:bg-green-300"
+                                @click="showAddModal = false">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MODAL -->
+        </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                loginInput: {
+                    email: "",
+                    password: "",
+                },
+                showAddModal: false,
+                boards: [
+                    { id: 1, name: "prep" },
+                    { id: 2, name: "1" },
+                    { id: 3, name: "2" },
+                    { id: 4, name: "3" },
+                ],
+                isLogedin: false,
+                students: [],
+            },
+            computed: {
+                filterStudents() {
+                    let a = {}
+                    this.students.forEach(e => {
+                        if (a[e.phase] == undefined) a[e.phase] = []
+                        a[e.phase].push(e)
+                    });
+                    return a
+                },
+            },
+            methods: {
+                checkAuth() {
+                    if (localStorage.access_token) {
+                        this.isLogedin = true
+                        this.fetchStudents()
+                    } else {
+                        this.isLogedin = false
+                    }
+                },
+                loginUser() {
+                    axios({method: "POST", url: "http://localhost:3000/users/login", data: {
+                        email: this.loginInput.email,
+                        password: this.loginInput.password
+                    }}).then((result) => {
+                        localStorage.setItem("access_token", result.data.access_token)
+                        this.checkAuth()
+                    }).catch((err) => {
+                        console.log(err);
+                    });
+                },
+                fetchStudents() {
+                    axios({method: "GET", url: "http://localhost:3000/students", headers: {
+                        access_token: localStorage.getItem("access_token")
+                    }}).then(({data}) => {
+                        this.students = data.data
+                    }).catch((err) => {
+                        console.log(err);
+                    });
+                },
+                logout() {
+                    localStorage.clear()
+                    this.checkAuth()
+                }
+            },
+            created() {
+                this.checkAuth()
+            }
+        });
+    </script>
+</body>
+
+</html>

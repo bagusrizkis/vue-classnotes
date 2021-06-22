@@ -1,0 +1,40 @@
+### Register
+
+POST http://localhost:3000/users/register HTTP/1.1
+content-type: application/json
+
+{
+    "email": "user@mail.com",
+    "password": "qwerty"
+}
+
+### Login
+
+POST http://localhost:3000/users/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "user@mail.com",
+    "password": "qwerty"
+}
+
+### Get Students
+GET http://localhost:3000/students HTTP/1.1
+content-type: application/json
+access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQG1haWwuY29tIiwiaWF0IjoxNjI0MzQ0NDYxfQ.ZR3T5qKFpSKS4zGLUs4O5eD9AMH1xmiXsY5rDfPDblo
+
+### Add Students
+POST http://localhost:3000/students HTTP/1.1
+content-type: application/json
+access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQG1haWwuY29tIiwiaWF0IjoxNjI0MzQ0NDYxfQ.ZR3T5qKFpSKS4zGLUs4O5eD9AMH1xmiXsY5rDfPDblo
+
+{
+    "name": "11",
+    "phase": "3",
+    "notes": null
+}
+
+### Delete Student
+DELETE http://localhost:3000/1 HTTP/1.1
+content-type: application/json
+access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQG1haWwuY29tIiwiaWF0IjoxNjI0MzQ0NDYxfQ.ZR3T5qKFpSKS4zGLUs4O5eD9AMH1xmiXsY5rDfPDblo
