@@ -24,10 +24,11 @@ option:
   > Y
 - Pick a linter / formatter config: (Use arrow keys)
   > ESLint + Standard config
-- Pick additional lint features: (Press <space> to select, <a> to toggle all, <i> to invert selection)
+- Pick additional lint features: (Press <space> to select, `<a>` to toggle all, `<i>` to invert selection)
   > Lint on save
 - Where do you prefer placing config for Babel, ESLint, etc.? (Use arrow keys)
   > In dedicated config files
+
 
 3. jalankan app
 
