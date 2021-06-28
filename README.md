@@ -64,6 +64,7 @@ this.$router.push({ name: 'Home' })
 pasang axios sebagai variable global
 
 ```js
+// main.js
 import axios from 'axios'
 
 export const instance = axios.create({
