@@ -1,0 +1,46 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "title": "Drive-In Senja Alam Sutera: Back to The Future",
+      "tag": "Theater & Drama Musical",
+      "imgUrl": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20200816154342_5f38f1be09ac3.jpg",
+      "date": "18 Aug 2020"
+    },
+    {
+      "id": 2,
+      "title": "Konser Virtual Romsh Project",
+      "tag": "Concert",
+      "imgUrl": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20200713020334_5f0b5e861aa4e.jpg",
+      "date": "22 Aug 2020"
+    },
+    {
+      "id": 3,
+      "title": "Show Your Rare Festival Online Charity Concert",
+      "tag": "Concert",
+      "imgUrl": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20200802052250.png",
+      "date": "22 Aug 2020"
+    },
+    {
+      "id": 4,
+      "title": "Konser Virtual Semesta Cinta The Baldys",
+      "tag": "Concert",
+      "imgUrl": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20200805115213.jpg",
+      "date": "22 Aug 2020"
+    },
+    {
+      "title": "event brussels fox",
+      "imgUrl": "https://static.cdn-cdpl.com/700x350/b8e29e8f0b15aab3473fed5df06c9186/hacktiv8-kelas.png",
+      "tag": "study",
+      "date": "2020-08-20",
+      "id": 5
+    },
+    {
+      "title": "qwerqwer",
+      "tag": "qwerqwer",
+      "date": "2021-06-30",
+      "imgUrl": "asdfasdf",
+      "id": 6
+    }
+  ]
+}
