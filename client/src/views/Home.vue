@@ -13,6 +13,17 @@
       </div>
       <!-- table data -->
       <TableEvent :events="events" />
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <router-link :to="{name: 'TrendingEvent'}">Trending</router-link>
+            </li>
+            <li class="breadcrumb-item">
+                <router-link :to="{name: 'OnlineEvent'}">Online</router-link>
+            </li>
+            </ol>
+        </nav>
+        <router-view />
     </div>
   </section>
 </template>

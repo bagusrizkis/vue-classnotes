@@ -5,42 +5,91 @@
       "title": "Drive-In Senja Alam Sutera: Back to The Future",
       "tag": "Theater & Drama Musical",
       "imgUrl": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20200816154342_5f38f1be09ac3.jpg",
-      "date": "18 Aug 2020"
+      "date": "18 Aug 2020",
+      "userId": 1
     },
     {
       "id": 2,
       "title": "Konser Virtual Romsh Project",
       "tag": "Concert",
       "imgUrl": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20200713020334_5f0b5e861aa4e.jpg",
-      "date": "22 Aug 2020"
+      "date": "22 Aug 2020",
+      "userId": 1
     },
     {
       "id": 3,
       "title": "Show Your Rare Festival Online Charity Concert",
       "tag": "Concert",
       "imgUrl": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20200802052250.png",
-      "date": "22 Aug 2020"
+      "date": "22 Aug 2020",
+      "userId": 1
     },
     {
       "id": 4,
       "title": "Konser Virtual Semesta Cinta The Baldys",
       "tag": "Concert",
       "imgUrl": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20200805115213.jpg",
-      "date": "22 Aug 2020"
+      "date": "22 Aug 2020",
+      "userId": 1
     },
     {
-      "title": "event brussels fox",
-      "imgUrl": "https://static.cdn-cdpl.com/700x350/b8e29e8f0b15aab3473fed5df06c9186/hacktiv8-kelas.png",
-      "tag": "study",
-      "date": "2020-08-20",
+      "title": "asdfasdfa",
+      "tag": "",
+      "date": "",
+      "imgUrl": "",
       "id": 5
+    }
+  ],
+  "trending": [
+    {
+      "id": 1,
+      "title": "Show Your Rare Festival Online Charity Concert",
+      "tag": "Music",
+      "imgUrl": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20200802052250.png",
+      "date": "18 Aug 2020",
+      "userId": 1
     },
     {
-      "title": "qwerqwer",
-      "tag": "qwerqwer",
-      "date": "2021-06-30",
-      "imgUrl": "asdfasdf",
-      "id": 6
+      "id": 2,
+      "title": "Konser Virtual Semesta Cinta The Baldys",
+      "tag": "Concert",
+      "imgUrl": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20200805115213.jpg",
+      "date": "30 Aug 2020",
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "title": "CRAZY DATING SHOW",
+      "tag": "Festival",
+      "imgUrl": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20200803192049_5f280121e466e.jpg",
+      "date": "27 Aug 2020",
+      "userId": 1
+    }
+  ],
+  "online": [
+    {
+      "id": 1,
+      "title": "Learn Microsoft Excel from Scratch",
+      "tag": "Workshop",
+      "imgUrl": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20200729150734_5f212e460b1fe.jpg",
+      "date": "19 Aug 2020",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "title": "Create Stunning UX Portfolio from Scratch",
+      "tag": "Workshop",
+      "imgUrl": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20200728091214_5f1f897ec475a.jpg",
+      "date": "2 Sept 2020",
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "title": "Belajar Ngedit Podcast (Drama Audio)",
+      "tag": "Webinar",
+      "imgUrl": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20200730150013_5f227e0d05f34.jpg",
+      "date": "14 Aug 2020",
+      "userId": 1
     }
   ]
 }

@@ -6,10 +6,12 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <router-link to="/">Home</router-link>
+          <router-link to="/home">Home</router-link>
+          <!-- <a href="/"> -->
         </li>
         <li class="breadcrumb-item">
-          <router-link to="/about">About</router-link>
+          <!-- <router-link to="/about">About</router-link> -->
+          <a href="#" @click.prevent="toAbout">About</a>
         </li>
         <li class="breadcrumb-item">
           <router-link to="/hello-world">HelloWorld</router-link>
@@ -21,6 +23,16 @@
     <router-view></router-view>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    toAbout () {
+      this.$router.push('/about')
+    }
+  }
+}
+</script>
 
 <style>
 #app {

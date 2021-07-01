@@ -1,75 +1,90 @@
-# Vue CLI
+# Vue Router
 
-## Basic Vue-cli
+Content:
+- programatic navigation
+- dynamic routing
+- nested route
+- additional: navigation guard
 
-1. Install Vue Cli secara global
+Jenis router:
+- standart, import component di awal
+- lazy load, import saat dibutuhkan
 
-```bash
-npm install -g @vue/cli
-# OR
-yarn global add @vue/cli
-```
-
-2. Jalankan `vue create < . || nama-project >`
-
-option:
-
-- Please pick a preset: (Use arrow keys):
-  > Manually select features
-- Check the features needed for your project:
-  > Choose Vue version, Babel, Router, Linter / Formater
-- Choose a version of Vue.js that you want to start the project with (Use arrow keys)
-  > 2.x
-- Use history mode for router? (Requires proper server setup for index fallback in production)
-  > Y
-- Pick a linter / formatter config: (Use arrow keys)
-  > ESLint + Standard config
-- Pick additional lint features: (Press <space> to select, <a> to toggle all, <i> to invert selection)
-  > Lint on save
-- Where do you prefer placing config for Babel, ESLint, etc.? (Use arrow keys)
-  > In dedicated config files
-
-3. jalankan app
-
-```bash
-npm run serve
-```
-
-## Review Component
-
-### Basic Router
-
-secara deklaratif:
+## Router Basic
+- router-view:
+container yang menampung page atau component pada vue,
+halaman yang sudah diimport akan dirender pada `<router-view>`
 
 ```html
-<!-- mirip seperti anchor, untuk mengarahkan -->
-<!-- <router-link to=""></router-link> -->
-<rotuer-link to="/path">Link1</router-link>
-<rotuer-link :to="{ name: 'About' }">Link2</router-link>
-
-<!-- tempat merender view -->
+<Nav />
 <router-view />
+<Footer />
 ```
 
-secara programatically:
-```js
+- router-link (deklaratif):
+penulisan deklaratif dari pembuatan anchor `<a>` tapi tidak merefresh halaman
+
+```html
+<router-link to="/page-path" >Title<router-link>
+<!-- dijadikan tag <a> -->
+``` 
+
+## Router Lanjutan
+- programatic
+```html
 ...
-this.$router.push({ name: 'Home' })
+<a href="#" @click.prevent="toAbout">About<a>
 ...
+
+<script>
+...
+    methods: {
+        toAbout () {
+            this.$router.push("/about").catch(() => {})
+            // this.$router.push({name: "nama"})
+        }
+    }
+...
+</script>
 ```
 
-### axios instance
-
-pasang axios sebagai variable global
-
+- dinamic routing
+misal untuk halaman detail
+click lalu masuk ke detail
 ```js
-import axios from 'axios'
+// routes:
+{
+    path: "/detail/:id",
+    name: "DetailMovie",
+    component: DetailMovie,
+}
 
-export const instance = axios.create({
-  baseURL: 'http://localhost:3000'
-})
+// page
+@click="detailPage(someId)"
 
-Vue.prototype.$axios = instance
-
-new Vue({...})
+// method
+detailPage () {
+    this.$router.push(`/detail/${id}`)
+}
 ```
+
+- mengambil data dari route
+```js
+this.$route
+
+// param named id
+this.$route.params.id
+```
+
+- nested routing
+```js
+children: [
+    {...},
+    {...}
+]
+
+
+<router-view>
+```
+
+- navigation guard

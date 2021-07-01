@@ -7,6 +7,7 @@
         <th scope="col">Title</th>
         <th scope="col">Tag</th>
         <th scope="col">date</th>
+        <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -22,6 +23,9 @@
         <td>{{ event.title }}</td>
         <td>{{ event.tag }}</td>
         <td>{{ event.date }}</td>
+        <td>
+            <button class="btn btn-warning" @click="toEditPage(event.id)">Edit</button>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -30,7 +34,12 @@
 <script>
 export default {
   name: 'TableEvent',
-  props: ['events']
+  props: ['events'],
+  methods: {
+    toEditPage (id) {
+      this.$router.push(`/edit/${id}`).catch(() => {})
+    }
+  }
 }
 </script>
 
