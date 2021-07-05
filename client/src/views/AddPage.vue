@@ -56,20 +56,11 @@ export default {
   },
   methods: {
     addEvent () {
-      this.$axios({
-        method: 'POST',
-        url: '/events',
-        data: {
-          title: this.title,
-          tag: this.tag,
-          date: this.date,
-          imgUrl: this.imgUrl
-        }
-      }).then(() => {
-        // pindah halaman
-        this.$router.push({ name: 'Home' })
-      }).catch(err => {
-        console.log(err)
+      this.$store.dispatch('addEvent', {
+            title: this.title,
+            tag: this.tag,
+            date: this.date,
+            imgUrl: this.imgUrl
       })
     }
   }

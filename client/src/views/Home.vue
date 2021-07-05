@@ -12,7 +12,7 @@
         <button @click="toAddPage" class="btn btn-info float-right">Add Event</button>
       </div>
       <!-- table data -->
-      <TableEvent :events="events" />
+      <TableEvent :events="concertEvents" />
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
             <li class="breadcrumb-item">
@@ -33,29 +33,24 @@ import TableEvent from '../components/TableEvent.vue'
 
 export default {
   name: 'Home',
-  data () {
-    return {
-      events: []
-    }
-  },
   components: { TableEvent },
+  computed: {
+      // untuk component ini saja
+      // modifikasi data
+      events () {
+          return this.$store.state.events
+      },
+      concertEvents () {
+          return this.$store.getters.concertEvents
+      }
+  },
   methods: {
     toAddPage () {
       this.$router.push({ name: 'AddPage' })
     },
-    fetchData () {
-      this.$axios({
-        methods: 'GET',
-        url: '/events'
-      }).then(({ data }) => {
-        this.events = data
-      }).catch(err => {
-        console.log(err)
-      })
-    }
   },
   created () {
-    this.fetchData()
+    this.$store.dispatch('fetchDataEvents')
   }
 }
 </script>

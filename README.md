@@ -1,90 +1,77 @@
-# Vue Router
+# Vuex
 
-Content:
-- programatic navigation
-- dynamic routing
-- nested route
-- additional: navigation guard
+state ==> global data untuk komponen
+mutations ==> set state
+actions ==> proses async, misal request ke server
+getters ==> untuk memanipulasi data dari state yg kemudian di sebarkan ke component
 
-Jenis router:
-- standart, import component di awal
-- lazy load, import saat dibutuhkan
+## Todo
+- [x] Install vuex
+    ```bash
+    npm i vuex --save
+    ```
+- [x] Buat directory baru di src dengan nama `store`
+- [x] buat file baru di dalamnya. `index.js`
+- [x] isi `index.js` dengan
+    ```js
+    import Vue from 'vue'
+    import Vuex from 'vuex'
+    import router from '../router'
+    import Axios from 'axios'
 
-## Router Basic
-- router-view:
-container yang menampung page atau component pada vue,
-halaman yang sudah diimport akan dirender pada `<router-view>`
+    const axios = Axios.create({
+        baseURL: 'http://localhost:3000'
+    })
 
-```html
-<Nav />
-<router-view />
-<Footer />
-```
+    Vue.use(Vuex)
 
-- router-link (deklaratif):
-penulisan deklaratif dari pembuatan anchor `<a>` tapi tidak merefresh halaman
-
-```html
-<router-link to="/page-path" >Title<router-link>
-<!-- dijadikan tag <a> -->
-``` 
-
-## Router Lanjutan
-- programatic
-```html
-...
-<a href="#" @click.prevent="toAbout">About<a>
-...
-
-<script>
-...
-    methods: {
-        toAbout () {
-            this.$router.push("/about").catch(() => {})
-            // this.$router.push({name: "nama"})
+    export default new Vuex.Store({
+    state: {
+        // data global untuk components
+        namaState: []
+    },
+    mutations: {
+        // untuk set state
+        // proses sync
+        // biasanya penamaan an dengan huruf Kapital
+        // supaya lebih mudah dalam pembacaannya
+        SAMPLE (state, payload) {
+            state.namaState = payload
         }
-    }
-...
-</script>
-```
+    },
+    actions: {
+        // untuk commit
+        // proses async
+        sampleAction (context, payload) {
+            context.commit('SAMPLE', payload)
+        }
+    }, 
+    getters: {
+        // membuat / memodifikasi dari state
+        sampleGetter (state) {
+            return ...
+        }
+    })
+    ```
 
-- dinamic routing
-misal untuk halaman detail
-click lalu masuk ke detail
-```js
-// routes:
-{
-    path: "/detail/:id",
-    name: "DetailMovie",
-    component: DetailMovie,
-}
+- [x] Tambahkan store di vue
+    ```js
+    ...
+    import store from './store'
 
-// page
-@click="detailPage(someId)"
+    new Vue({
+        router,
+        store,      // <---- tambahkan store
+        render: h => h(App)
+    }).$mount('#app')
+    ```
 
-// method
-detailPage () {
-    this.$router.push(`/detail/${id}`)
-}
-```
-
-- mengambil data dari route
-```js
-this.$route
-
-// param named id
-this.$route.params.id
-```
-
-- nested routing
-```js
-children: [
-    {...},
-    {...}
-]
-
-
-<router-view>
-```
-
-- navigation guard
+- [ ] Akses dari components
+    - state:
+        `this.$store.state.namaState`
+    - mutations:
+        `this.$store.commit("MUTATION_NAME")`
+    - actions:
+        `this.$store.dispatch('namaAction', payload)`
+    - getters:
+        `this.$store.getters.sampleGetter`
