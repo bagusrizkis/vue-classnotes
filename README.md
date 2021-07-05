@@ -1,8 +1,11 @@
 # Vuex
 
 state ==> global data untuk komponen
+
 mutations ==> set state
+
 actions ==> proses async, misal request ke server
+
 getters ==> untuk memanipulasi data dari state yg kemudian di sebarkan ke component
 
 ## Todo
@@ -66,7 +69,7 @@ getters ==> untuk memanipulasi data dari state yg kemudian di sebarkan ke compon
     }).$mount('#app')
     ```
 
-- [ ] Akses dari components
+- [x] Akses dari components
     - state:
         `this.$store.state.namaState`
     - mutations:
