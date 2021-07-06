@@ -6,15 +6,17 @@ import HelloWorld from '../components/HelloWorld.vue'
 import EditPage from '../views/EditPage.vue'
 import TrendingEvent from '../components/TrendingEvent.vue'
 import OnlineEvent from '../components/OnlineEvent.vue'
+import LoginPage from '../views/Login.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/home',
+    path: '/',
     name: 'Home',
     component: Home,
-    redirect: { name: 'TrendingEvent' },
+    // redirect: { name: 'TrendingEvent' },
+    meta: { requiresAuth: true },
     children: [
       {
         path: 'trending',
@@ -27,6 +29,15 @@ const routes = [
         component: OnlineEvent
       }
     ]
+  },
+  {
+    path: '/login',
+    name: 'LoginPage',
+    component: LoginPage,
+    beforeEnter: (to, from, next) => {
+      if (localStorage.access_token) next('/')
+      else next()
+    }
   },
   {
     path: '/add',

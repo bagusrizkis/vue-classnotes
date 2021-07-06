@@ -12,7 +12,7 @@
         <button @click="toAddPage" class="btn btn-info float-right">Add Event</button>
       </div>
       <!-- table data -->
-      <TableEvent :events="concertEvents" />
+      <TableEvent :events="events" />
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
             <li class="breadcrumb-item">
@@ -35,19 +35,19 @@ export default {
   name: 'Home',
   components: { TableEvent },
   computed: {
-      // untuk component ini saja
-      // modifikasi data
-      events () {
-          return this.$store.state.events
-      },
-      concertEvents () {
-          return this.$store.getters.concertEvents
-      }
+    // untuk component ini saja
+    // modifikasi data
+    events () {
+      return this.$store.state.events
+    },
+    concertEvents () {
+      return this.$store.getters.concertEvents
+    }
   },
   methods: {
     toAddPage () {
       this.$router.push({ name: 'AddPage' })
-    },
+    }
   },
   created () {
     this.$store.dispatch('fetchDataEvents')

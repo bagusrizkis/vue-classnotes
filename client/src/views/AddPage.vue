@@ -57,10 +57,10 @@ export default {
   methods: {
     addEvent () {
       this.$store.dispatch('addEvent', {
-            title: this.title,
-            tag: this.tag,
-            date: this.date,
-            imgUrl: this.imgUrl
+        title: this.title,
+        tag: this.tag,
+        date: this.date,
+        imgUrl: this.imgUrl
       })
     }
   }

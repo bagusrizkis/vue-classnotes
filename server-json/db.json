@@ -84,5 +84,12 @@
       "date": "14 Aug 2020",
       "userId": 1
     }
+  ],
+  "user": [
+      {
+          "email": "user@mail.com",
+          "password": "qwerty",
+          "access_token": "qwqweqweqweqweqweqwe"
+      }
   ]
 }
