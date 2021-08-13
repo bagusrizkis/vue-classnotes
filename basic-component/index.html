@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <my-hero title="My Hero Header"></my-hero>
+        <my-hero title="Burgundy"></my-hero>
+        <my-button></my-button>
+        <my-button></my-button>
+        <my-button></my-button>
+        <my-button></my-button>
+        <hr>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        const myButton = {
+            template: `<button @click="count += 1">My Button {{count}}</button>`,
+            data() {
+                return {
+                    count: 0
+                }
+            }
+        }
+
+        // global
+        Vue.component("my-hero", {
+            template: `<h1>{{title}}</h1>`,
+            data: function () {
+                return {}
+            },
+            methods: {},
+            props: ["title"],
+        })
+
+        new Vue({
+            el: "#app",
+            // registrasi local component
+            components: {
+                "my-button": myButton
+            }
+        })
+    </script>
+</body>
+
+</html>

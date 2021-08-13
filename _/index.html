@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Component</title>
+</head>
+
+<body>
+    <div id="app">
+        <my-header></my-header>
+        <my-button title="Halo Vue" id="button-khusus"></my-button>
+        <my-button title="Halo Vue 2"></my-button>
+        <my-button></my-button>
+        <my-button></my-button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        // component variable
+        const myButton = {
+            template: `<button @click="count += 1">{{id}}. {{ title }} {{ count }}</button>`,
+            data() {
+                return {
+                    count: 0
+                }
+            },
+            props: ['title', 'id']
+        }
+
+        Vue.component("my-header", {
+            template: `
+                <h1>Hallo VUE Component</h1>
+            `
+        })
+
+        new Vue({
+            el: "#app",
+            // local registration
+            components: {
+                "my-button": myButton
+            }
+        })
+    </script>
+</body>
+
+</html>
